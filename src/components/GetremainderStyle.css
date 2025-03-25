@@ -1,0 +1,69 @@
+/* General container styling */
+.remainder-container {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Title styling */
+  .remainder-title {
+    text-align: center;
+    color: #dc3545;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  /* Error message */
+  .remainder-error {
+    text-align: center;
+    color: #ff0000;
+    font-weight: bold;
+  }
+  
+  /* Loading state */
+  .remainder-loading {
+    text-align: center;
+    color: #007bff;
+    font-weight: bold;
+  }
+  
+  /* No data found */
+  .remainder-no-data {
+    text-align: center;
+    color: #6c757d;
+    font-size: 18px;
+    font-style: italic;
+  }
+  
+  /* Table styling */
+  .remainder-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .remainder-table th, 
+  .remainder-table td {
+    border: 1px solid #dee2e6;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  .remainder-table th {
+    background-color: #d51301;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .remainder-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .remainder-table tr:hover {
+    background-color: #d4edda;
+    transition: 0.3s;
+  }
+  

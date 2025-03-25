@@ -1,0 +1,11 @@
+.analytics-container {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .piechart-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
