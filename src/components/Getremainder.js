@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './GetremainderStyle.css'; // Import the new CSS file
 
 const Getremainder = () => {
+  const API_URL = "https://fixit-hostel-backend.onrender.com";
   const [pendingComplaints, setPendingComplaints] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -9,7 +10,7 @@ const Getremainder = () => {
   useEffect(() => {
     const fetchPendingComplaints = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/complaints');
+        const response = await fetch(`${API_URL}/api/complaints`);
         if (!response.ok) {
           throw new Error('Failed to fetch complaints');
         }

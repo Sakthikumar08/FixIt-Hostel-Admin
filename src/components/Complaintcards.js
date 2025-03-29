@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
-import "./ComplaintcardStyle.css";
-import { CheckCircle, RefreshCcw, AlertCircle, DollarSign } from "lucide-react";
+import { CheckCircle, RefreshCcw, AlertCircle } from "lucide-react";
 
 const ComplaintCards = () => {
+  const API_URL = "https://fixit-hostel-backend.onrender.com";
   const [complaintData, setComplaintData] = useState([]);
 
   useEffect(() => {
     const fetchComplaintStats = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/complaints/statsByType"); // API URL
+        const response = await fetch(`${API_URL}/api/complaints/statsByType`); 
         const data = await response.json();
         setComplaintData(data);
       } catch (error) {
@@ -20,28 +20,37 @@ const ComplaintCards = () => {
   }, []);
 
   return (
-    <div className="complaint-container">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
       {complaintData.map((item, index) => (
-        <div key={index} className="complaint-card">
-          <h2>{item._id}</h2> {/* Complaint Type */}
-          <p>Statistics for {item._id} complaints</p>
+        <div
+          key={index}
+          className="bg-white rounded-2xl p-6 shadow-md border border-gray-200 transition-transform transform hover:-translate-y-2 hover:shadow-lg"
+        >
+          <h2 className="text-2xl font-semibold text-blue-500 mb-3">{item._id}</h2>
+          <p className="text-gray-600 mb-4">Statistics for {item._id} complaints</p>
 
-          <div className="status-info">
-            <div className="status-badge raised">
-              <AlertCircle size={16} />
+          <div className="flex flex-wrap justify-between gap-3">
+            {/* Raised Complaints */}
+            <div className="flex items-center gap-2 text-red-500">
+              <AlertCircle size={18} />
               <span>Raised: {item.raised}</span>
             </div>
-            <div className="status-badge updated">
-              <RefreshCcw size={16} />
+
+            {/* Updated Complaints */}
+            <div className="flex items-center gap-2 text-yellow-500">
+              <RefreshCcw size={18} />
               <span>Updated: {item.updated}</span>
             </div>
-            <div className="status-badge completed">
-              <CheckCircle size={16} />
+
+            {/* Completed Complaints */}
+            <div className="flex items-center gap-2 text-green-500">
+              <CheckCircle size={18} />
               <span>Completed: {item.completed}</span>
             </div>
-            <div className="status-badge amount-spent">
-             
-              <span style={{color:"#4A90E2",fontSize:"1.2rem",fontWeight:"bold"}}>Total Amount Spent: ₹{(item.totalAmountSpent ?? 0).toLocaleString()}</span>
+
+            {/* Total Amount Spent */}
+            <div className="text-blue-500 font-bold text-lg">
+              Total Amount Spent: ₹{(item.totalAmountSpent ?? 0).toLocaleString()}
             </div>
           </div>
         </div>

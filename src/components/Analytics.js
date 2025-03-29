@@ -1,6 +1,17 @@
 import React from "react";
-import { PieChart, Pie, Tooltip, Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid, Legend } from "recharts";
-import "./AnalyticsStyle.css";
+import {
+  PieChart,
+  Pie,
+  Tooltip,
+  Cell,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Legend,
+} from "recharts";
+import ComplaintCards from "./Complaintcards";
 
 const pieData = [
   { name: "Electrical", complaints: 10 },
@@ -38,65 +49,81 @@ const completedData = [
   { department: "Food", completed: 2 },
 ];
 
-const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#AF19FF","#FFBB78"];
+const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#AF19FF", "#FFBB78"];
 
 const Analytics = () => {
   return (
-    <div className="analytics-container">
-      <h2>Analytics</h2>
-      <p>Analytics data will be displayed here.</p>
-      <div className="piechart-container">
-        <PieChart width={400} height={400}>
-          <Pie
-            data={pieData}
-            cx={200}
-            cy={200}
-            innerRadius={60}
-            outerRadius={100}
-            fill="#8884d8"
-            dataKey="complaints"
-            label
-          >
-            {pieData.map((entry, index) => (
-              <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-            ))}
-          </Pie>
-          <Tooltip />
-        </PieChart>
+    <div className="p-8 bg-gradient-to-r from-blue-100 to-blue-200 min-h-screen">
+      {/* Header */}
+      <h2 className="text-4xl font-bold text-blue-500 mb-4">Analytics Dashboard</h2>
+      <p className="text-lg text-gray-600 mb-10">Visual representation of complaint data.</p>
+
+      {/* Grid Layout */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+        {/* Pie Chart: Complaints Overview */}
+        <div className="bg-white p-6 rounded-lg shadow-lg">
+          <h3 className="text-xl font-semibold mb-4 text-blue-500">Complaints Overview</h3>
+          <PieChart width={400} height={400}>
+            <Pie
+              data={pieData}
+              cx={200}
+              cy={200}
+              innerRadius={80}
+              outerRadius={120}
+              dataKey="complaints"
+              label
+            >
+              {pieData.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+              ))}
+            </Pie>
+            <Tooltip />
+            <Legend />
+          </PieChart>
+        </div>
+
+        {/* Bar Chart: Complaints by Department */}
+        <div className="bg-white p-6 rounded-lg shadow-lg">
+          <h3 className="text-xl font-semibold mb-4 text-blue-500">Complaints by Department</h3>
+          <BarChart width={450} height={400} data={barData}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="department" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <Bar dataKey="complaints" fill="#8884d8" />
+          </BarChart>
+        </div>
+
+        {/* Bar Chart: Updated Complaints */}
+        <div className="bg-white p-6 rounded-lg shadow-lg">
+          <h3 className="text-xl font-semibold mb-4 text-blue-500">Updated Complaints</h3>
+          <BarChart width={450} height={400} data={updatedData}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="department" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <Bar dataKey="updated" fill="#82ca9d" />
+          </BarChart>
+        </div>
+
+        {/* Bar Chart: Completed Complaints */}
+        <div className="bg-white p-6 rounded-lg shadow-lg">
+          <h3 className="text-xl font-semibold mb-4 text-blue-500">Completed Complaints</h3>
+          <BarChart width={450} height={400} data={completedData}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="department" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <Bar dataKey="completed" fill="#ff7300" />
+          </BarChart>
+        </div>
+
       </div>
-      <div className="barchart-container">
-        <h3>Complaints by Department</h3>
-        <BarChart width={500} height={300} data={barData}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="department" />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Bar dataKey="complaints" fill="#8884d8" />
-        </BarChart>
-      </div>
-      <div className="barchart-container">
-        <h3>Updated Complaints</h3>
-        <BarChart width={500} height={300} data={updatedData}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="department" />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Bar dataKey="updated" fill="#82ca9d" />
-        </BarChart>
-      </div>
-      <div className="barchart-container">
-        <h3>Completed Complaints</h3>
-        <BarChart width={500} height={300} data={completedData}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="department" />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Bar dataKey="completed" fill="#ff7300" />
-        </BarChart>
-      </div>
+      <ComplaintCards />
     </div>
   );
 };

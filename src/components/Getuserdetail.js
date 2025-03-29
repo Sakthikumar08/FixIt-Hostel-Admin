@@ -3,6 +3,7 @@ import axios from 'axios';
 import "./GetuserdetailStyle.css";
 
 const GetAdminDetail = () => {
+  const API_URL = "https://fixit-hostel-backend.onrender.com";
   const [admin, setAdmin] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -17,7 +18,7 @@ const GetAdminDetail = () => {
       }
 
       try {
-        const response = await axios.get("http://localhost:5000/api/admin/details", {
+        const response = await axios.get(`${API_URL}/api/admin/details`, {
           headers: {
             Authorization: `Bearer ${token}`, // ✅ Send token for authentication
           },

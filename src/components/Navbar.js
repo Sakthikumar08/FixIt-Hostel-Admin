@@ -18,8 +18,12 @@ const Navbar = ({ onLogout }) => {  // ✅ Accept onLogout as a prop
         <button onClick={() => navigate('/')}>Home</button>
        {/*  <button onClick={() => navigate('/complaint-box')}>Complaint Box</button> */}
         <button onClick={() => navigate('/complaint-report')}>Complaint Report</button>
+        <button onClick={() => navigate('/attendancetake')}>Attendance</button>
+        <button onClick={() => navigate('/Outing')}>Outing</button>
+        <button onClick={() => navigate('/Instruction')}>Announcement</button>
         <button onClick={() => navigate('/analytics')}>Analytics</button>
         <button onClick={() => navigate('/laundry')}>Laundry</button>
+        <button onClick={() => navigate('/roomclean')}>Roomclean</button>
         <button onClick={handleLogout}>Log Out</button>
       </nav>
     </div>
