@@ -67,8 +67,7 @@ const Login = ({ onLogin }) => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <p>username : EMP12345</p>
-          <p>password : password123</p>
+
           <button type="submit" className="login-button">Login</button>
         </form>
       </div>
